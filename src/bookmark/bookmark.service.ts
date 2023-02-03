@@ -18,12 +18,12 @@ export class BookmarkService {
         const { url, title } = getBookmarkDto
 
         if (url) {
-            bookmarks = this.bookmark.filter(item => item.url == url)
+            bookmarks = bookmarks.filter(item => item.url.toLowerCase().includes(url))
 
         }
 
         if (title) {
-            bookmarks = this.bookmark.filter(item => item.title == title)
+            bookmarks = bookmarks.filter(item => item.title.toLowerCase().includes(title))
 
         }
         return bookmarks
