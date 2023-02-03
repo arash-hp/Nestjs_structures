@@ -7,7 +7,7 @@ export class BookmarkController {
 
     @Get()
     test(){
-      return  this.bookmarkService.findAll();
+      return  this.bookmarkService.findAll()
     }
 
 }
