@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Bookmark } from './bookmark.model';
 import { BookmarkService } from './bookmark.service';
 import { CreateBookmarkDto } from './dto/create-bookmark.dto';
+import { GetBookmarkDto } from './dto/get-bookmark.dto';
 
 @Controller('bookmark')
 export class BookmarkController {
@@ -9,7 +10,10 @@ export class BookmarkController {
 
     // http://localhost:3000/bookmark
     @Get()
-    findAll() {
+    find(@Query() getBookmarkDto: GetBookmarkDto) {
+        if (Object.keys(getBookmarkDto).length) {
+            return this.bookmarkService.find(getBookmarkDto)
+        }
         return this.bookmarkService.findAll()
     }
 
